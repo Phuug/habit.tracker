@@ -75,7 +75,7 @@ function render() {
         </tr>
   `;
 
-  habits.forEach(habit => {
+  habits.forEach((habit, index) => {
 
     tableHTML += `
       <tr class="${habit.category}">
@@ -88,9 +88,23 @@ function render() {
               ${habit.name}
             </span>
 
-            ${
-              deleteMode
-              ? `
+          ${
+            deleteMode
+            ? `
+                <button
+                  class="move-up-btn"
+                  data-index="${index}"
+                >
+                  ⬆️
+                </button>
+
+                <button
+                  class="move-down-btn"
+                  data-index="${index}"
+                >
+                  ⬇️
+                </button>
+
                 <button
                   class="delete-btn"
                   data-habit="${habit.name}"
@@ -98,8 +112,8 @@ function render() {
                   🗑️
                 </button>
               `
-              : ""
-            }
+            : ""
+          }
 
           </div>
 
@@ -135,8 +149,8 @@ function render() {
         +
       </button>
 
-      <button id="remove-btn">
-        -
+      <button id="edit-btn">
+      ✏️
       </button>
 
     </div>
@@ -151,6 +165,8 @@ function render() {
   setupHabitButtons();
 
   setupDeleteButtons();
+
+  setupMoveButtons();
 
 }
 
@@ -239,8 +255,8 @@ function setupHabitButtons() {
   const addBtn =
     document.getElementById("add-btn");
 
-  const removeBtn =
-    document.getElementById("remove-btn");
+  const editBtn =
+    document.getElementById("edit-btn");
 
   addBtn.addEventListener("click", () => {
 
@@ -248,7 +264,7 @@ function setupHabitButtons() {
 
   });
 
-  removeBtn.addEventListener("click", () => {
+  editBtn.addEventListener("click", () => {
 
     deleteMode = !deleteMode;
 
@@ -391,6 +407,74 @@ function setupDeleteButtons() {
         return habit.name !== habitName;
 
       });
+
+      localStorage.setItem(
+        "habits",
+        JSON.stringify(habits)
+      );
+
+      render();
+
+    });
+
+  });
+
+}
+
+function setupMoveButtons() {
+
+  const upButtons =
+    document.querySelectorAll(".move-up-btn");
+
+  const downButtons =
+    document.querySelectorAll(".move-down-btn");
+
+  upButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const index =
+        Number(button.dataset.index);
+
+      if (index === 0) return;
+
+      [
+        habits[index - 1],
+        habits[index]
+      ] = [
+        habits[index],
+        habits[index - 1]
+      ];
+
+      localStorage.setItem(
+        "habits",
+        JSON.stringify(habits)
+      );
+
+      render();
+
+    });
+
+  });
+
+  downButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      const index =
+        Number(button.dataset.index);
+
+      if (
+        index === habits.length - 1
+      ) return;
+
+      [
+        habits[index],
+        habits[index + 1]
+      ] = [
+        habits[index + 1],
+        habits[index]
+      ];
 
       localStorage.setItem(
         "habits",
