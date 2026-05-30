@@ -55,10 +55,8 @@ button:hover {
 }
 
 table {
-  border-collapse: collapse;
   width: max-content;
   margin: 0 auto;
-  background: white;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
@@ -112,9 +110,15 @@ td:first-child {
 }
 
 .habit-name-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 9fr 1fr 1fr 1fr;
   align-items: center;
+  gap: 0px;
+}
+
+.habit-actions {
+  display: flex;
+  gap: 2px;
 }
 
 .delete-btn {
@@ -174,4 +178,17 @@ td:first-child {
 
 .active-category {
   outline: 3px solid black;
+}
+
+.move-up-btn,
+.move-down-btn,
+.delete-btn {
+
+  width: 28px;
+  height: 28px;
+
+  font-size: 12px;
+
+  padding: 0;
+
 }
