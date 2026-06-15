@@ -191,3 +191,8 @@ td:first-child {
   padding: 0;
 
 }
+
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
