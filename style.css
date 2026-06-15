@@ -196,3 +196,10 @@ button {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
+
+button:focus,
+button:focus-visible,
+button:active {
+  outline: none;
+  background: white;
+}
