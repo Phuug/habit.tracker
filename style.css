@@ -193,6 +193,6 @@ td:first-child {
 
 }
 
-button {
+button, #prev-month, #next-month {
   -webkit-tap-highlight-color: transparent;
 }
