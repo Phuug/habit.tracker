@@ -16,9 +16,10 @@ let habits = JSON.parse(
 ];
 
 const app = document.getElementById("app");
+const today = new Date();
 
-let currentMonth = 4;
-let currentYear = 2026;
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
 
 let deleteMode = false;
 
