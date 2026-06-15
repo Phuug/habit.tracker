@@ -18,7 +18,11 @@ h2 {
   margin-bottom: 20px;
 }
 
-#app, p {
+#app {
+  padding: 0px 30px;
+}
+
+p {
   padding: 0px 30px;
 }
 
@@ -43,10 +47,6 @@ button {
   transition:
     transform 0.15s,
     background 0.15s;
-}
-
-button:hover {
-  transform: translateY(-2px);
 }
 
 .table-container {
